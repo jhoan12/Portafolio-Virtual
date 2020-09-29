@@ -1,0 +1,56 @@
+.contactos{
+    display: flex;
+    justify-content: center;
+}
+
+.contacto{
+    text-align: center;
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    background: #f1f1f1;
+    margin: 10px;
+    border-radius: 30%;
+    box-shadow: 0 5px 15px -5px #00000070;
+    color: #3498db;
+    overflow: hidden;
+    position: relative;
+}
+.contacto i{
+    line-height: 120px;
+    font-size: 35px;
+    transition: 0.7s linear;
+}
+
+.contacto:hover i{
+    transform: scale(1.3);
+    color: #f1f1f1;
+}
+.contacto::before{
+    content: "";
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: #3498db;
+    transform: rotate(45deg);
+    left: -110%;
+    top: 90%
+}
+
+.contacto:hover::before{
+    animation: aaa 0.7s 1;
+    top: -10%;
+    left: -10%;
+}
+@keyframes aaa {
+    0%{
+        top: -110%;
+        left: 90%;
+    }50%{
+        top: 10%;
+        left: -30%;
+    }100%{
+        top: -10%;
+        left: -10%;
+    }
+}

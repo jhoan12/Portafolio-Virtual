@@ -1,0 +1,17 @@
+.imagen{
+    display: flex;
+    justify-content: center;
+}
+
+.imagen img{
+    height: auto;
+    width: auto; 
+    width: 300px;
+    height: 300px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    border-top-right-radius: 20%;
+    border-bottom-left-radius: 20%;
+    box-shadow: 4px 8px 20px rgba(0, 0, 0, 1);
+}

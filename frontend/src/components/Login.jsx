@@ -1,0 +1,67 @@
+import React, { useState } from 'react'
+import Axios from 'axios'
+import Swal from 'sweetalert2'
+import {Link} from 'react-router-dom'
+import '../css/login.css'
+
+export default function Login() {
+
+    const [correo, setCorreo] = useState('')
+    const [contrasena, setContrasena] = useState('')
+
+    const login = async (e) => {
+        e.preventDefault()
+        const usuario = {correo, contrasena}
+        const respuesta = await Axios.post('https://backen-portafolio-vitual.herokuapp.com/usuario/login', usuario)
+        const mensaje = respuesta.data.mensaje
+        if(mensaje!== 'Bienvenido'){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: mensaje,
+                
+            })
+        }else{
+            const token = respuesta.data.token
+            const nombre = respuesta.data.nombre
+            const idUsuario = respuesta.data.id
+            const correo = respuesta.data.correo
+            sessionStorage.setItem('correo', correo)
+            sessionStorage.setItem('token', token)
+            sessionStorage.setItem('nombre', nombre)
+            sessionStorage.setItem('idUsuario', idUsuario)
+            window.location.href="/portafolio"
+        }
+    }
+
+    return (
+        <div className="container-lg  mt-5">
+            <div className="row">
+                <div className="col-md-6 mx-auto">
+                    <div className="card  fondo text-white mb-3 mt-5">
+                        <div className="container-lg text-center fa-6x">
+                            <i className="fas fa-user"></i>
+                        </div>
+                        <div className="card-header  text-center">
+                            <h4>Inicio de Sesion</h4>
+                        </div>
+                        <div className="card-body">
+                            <form onSubmit={login} >
+                                <div className="form-group">
+                                    <h3> Correo </h3>
+                                    <input type="email" className="form-control" autoFocus required onChange={e => setCorreo(e.target.value)} />
+                                </div>
+                                <div className="form-group">
+                                    <h3> Contraseña </h3>
+                                    <input type="password" className="form-control"  required onChange={e => setContrasena(e.target.value)} />
+                                </div>
+                                <input type="submit" className="btn btn-dark btn-block"/>
+                                <Link className="btn btn-primary btn-sm btn-block" to="/CrearCuenta">¿NO tienes Cuenta?</Link>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}

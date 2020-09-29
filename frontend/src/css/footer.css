@@ -1,0 +1,12 @@
+.contenedor{
+    /* width: 100%; */
+    height: 70px;
+}
+.contenidoFooter{
+    text-decoration: none;
+    line-height: 70px;
+    font-size: 30px;
+}
+.contenidoFooter Link{
+    color: white;
+}

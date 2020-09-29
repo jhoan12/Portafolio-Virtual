@@ -1,0 +1,53 @@
+.services-section{
+    background-image: url(../img/fondoHabilidades.jpg);
+    background-size: cover;
+    padding: 60px 0;
+    width: 100%;
+}
+.inner-width{
+    width: 100%;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.services-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+} 
+
+.service-box{
+    /* padding: 10px; */
+    text-align: center;
+    color: #ddd;
+    cursor: pointer;
+    
+}
+.service-icon{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border: 3px solid #2f3542;
+    color: #82ccdd;
+    transform: rotate(45deg);
+    margin-bottom: 30px;
+    margin-top: 16px;
+    box-shadow: 4px 8px 20px rgba(0, 0, 0, 1);
+}
+.service-icon i{
+    line-height: 100px;
+    transform: rotate(-45deg);
+    font-size: 26px;
+    font-size: 60px;
+}
+.service-box:hover .service-icon{
+    background: #2f3542;
+    color: #82ccdd;
+}
+
+.service-title{
+    font-size: 25px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
