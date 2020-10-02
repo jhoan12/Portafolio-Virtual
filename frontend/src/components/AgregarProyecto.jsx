@@ -41,7 +41,7 @@ export default function AgregarProyecto() {
         formdata.append('link', link)
         formdata.append('usuario', usuario)
         formdata.append('repositorio', repositorio)
-        const respuesta = await Axios.post('https://backen-portafolio-vitual.herokuapp.com/proyectos/agregarProyecto', formdata, {
+        const respuesta = await Axios.post('proyectos/agregarProyecto', formdata, {
             headers: { 'autorizacion': token }
         })
         Swal.fire({

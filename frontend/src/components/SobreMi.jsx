@@ -26,10 +26,10 @@ export default function SobreMi() {
         const id = sessionStorage.getItem('idUsuario')
         const token = sessionStorage.getItem('token')
 
-        const respuesta = await Axios.get('https://backen-portafolio-vitual.herokuapp.com/acercade/obtenerArticulos/' + id, {
+        const respuesta = await Axios.get('acercade/obtenerArticulos/' + id, {
             headers: { 'autorizacion': token }
         })
-        const respuestaArchivos = await Axios.get('https://backen-portafolio-vitual.herokuapp.com/archivos/obtenerArchivos/' + id, {
+        const respuestaArchivos = await Axios.get('archivos/obtenerArchivos/' + id, {
             headers: { 'autorizacion': token }
         })
 
@@ -47,7 +47,7 @@ export default function SobreMi() {
         formdata.append('titulo', titulo)
         formdata.append('descripcion', descripcion)
         formdata.append('usuario', id)
-        const respuesta = await Axios.post('https://backen-portafolio-vitual.herokuapp.com/acercade/agregarArticulo', formdata, {
+        const respuesta = await Axios.post('acercade/agregarArticulo', formdata, {
             headers: { 'autorizacion': token }
         })
         Swal.fire({
@@ -71,7 +71,7 @@ export default function SobreMi() {
         formdata.append('archivo', archivo)
         formdata.append('titulo', tituloArchivo)
         formdata.append('usuario', id)
-        const respuesta = await Axios.post('https://backen-portafolio-vitual.herokuapp.com/archivos/agregarArchivo', formdata, {
+        const respuesta = await Axios.post('archivos/agregarArchivo', formdata, {
             headers: { 'autorizacion': token }
         })
         Swal.fire({
@@ -88,7 +88,7 @@ export default function SobreMi() {
 
     const eliminarArchivo = async (id) => {
         const token = sessionStorage.getItem('token')
-        const respuesta = await Axios.delete('https://backen-portafolio-vitual.herokuapp.com/archivos/eliminarArchivo/' + id, {
+        const respuesta = await Axios.delete('archivos/eliminarArchivo/' + id, {
             headers: { 'autorizacion': token }
         })
         Swal.fire({
@@ -106,7 +106,7 @@ export default function SobreMi() {
 
     const eliminarArticulo = async (id) => {
         const token = sessionStorage.getItem('token')
-        const respuesta = await Axios.delete('https://backen-portafolio-vitual.herokuapp.com/acercade/eliminarArticulo/' + id, {
+        const respuesta = await Axios.delete('acercade/eliminarArticulo/' + id, {
             headers: { 'autorizacion': token }
         })
         Swal.fire({
@@ -123,12 +123,12 @@ export default function SobreMi() {
     }
 
     return (
-        <div className=" container-xl ">
+        <div className=" container-xl mt-5" id="SobreMi">
 
             {
                 datos.map((dato) => (
                     <div key={dato._id} className="row  pb-5 text-dark">
-                        <h2 className="text-center mt-3  col-12">{dato.titulo}</h2>
+                        <h2 className="text-center mt-3  col-12" >{dato.titulo}</h2>
                         <div className=" text-center imagen ml-5 mt-3 col-12 col-md-6 mx-auto">
                             <img src={dato.imageUrl} className="img-fluid text-center" alt={dato.titulo} />
                         </div>

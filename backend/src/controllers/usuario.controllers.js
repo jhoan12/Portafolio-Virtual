@@ -1,8 +1,15 @@
 const usuarioCtrl = {}
 const Usuario = require('../models/usuario.models')
+const SobreMi = require('../models/acercade.models')
+const Archivos = require('../models/archivos.models')
+const Contactos = require('../models/contactos.models')
+const Iconos = require('../models/iconos.models')
+const Proyectos = require('../models/proyectos.models')
+const fs = require('fs')
 
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+
 
 
 usuarioCtrl.crearUsuario = async (req, res) => {
@@ -62,16 +69,45 @@ usuarioCtrl.login = async (req, res) =>{
     }
 }
 
-usuarioCtrl.eliminar = async (req, res) => {
+usuarioCtrl.eliminar = async (req, res, next) => {
+    const ubicaciones = []
     const id = req.params.id
-    const token = jwt.sign({_id: id}, 'admin')
-    const respuesta = await Usuario.findByIdAndDelete({_id: id})
 
-    res.json({
-        mensaje: 'Adios :( ',
-        respuesta,
-        token
-    })
+    const sobremi = await SobreMi.find({usuario: id})
+    const archivos = await Archivos.find({usuario: id})
+    const proyectos = await Proyectos.find({usuario: id})
+    
+    for(let i = 0; i < sobremi.length; i++){
+        ubicaciones.push(sobremi[i].ubicacion)
+    }
+    for(let i = 0; i < archivos.length; i++){
+        ubicaciones.push(archivos[i].ubicacion)
+    }
+    for(let i = 0; i < proyectos.length; i++){
+        ubicaciones.push(proyectos[i].ubicacion)
+    }
+
+    try {
+        const id = req.params.id
+        await SobreMi.deleteMany({usuario: id})
+        await Archivos.deleteMany({usuario: id})
+        await Iconos.deleteMany({usuario: id})
+        await Contactos.deleteMany({usuario: id})
+        await Proyectos.deleteMany({usuario: id})
+        await Usuario.findByIdAndDelete({_id: id})
+        res.json({mensaje: 'Adios :( '})
+    } catch (error) {
+        res.json({
+            mensaje: 'ERROR', error
+        })
+        next(error)
+    }
+
+    for(let i = 0; i < ubicaciones.length; i++){
+        fs.unlink(ubicaciones[i], (err) => {
+            if (err) throw err;
+        });
+    }
 }
 
 module.exports = usuarioCtrl

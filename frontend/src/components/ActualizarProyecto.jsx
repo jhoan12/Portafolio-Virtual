@@ -20,7 +20,7 @@ export default function ActualizarProyecto(props) {
     const obtenerProyecto = async () => {
         const id = props.match.params.id
         const token = sessionStorage.getItem('token')
-        const respuesta = await Axios.get('https://backen-portafolio-vitual.herokuapp.com/proyectos/obtenerProyecto/' + id, {
+        const respuesta = await Axios.get('proyectos/obtenerProyecto/' + id, {
             headers: { 'autorizacion': token }
         })
         setRepositoiro(respuesta.data.repositorio)
@@ -44,7 +44,7 @@ export default function ActualizarProyecto(props) {
             usuario: sessionStorage.getItem('idUsuario'),
             pertenece: props.match.params.id
         }
-         await Axios.put('https://backen-portafolio-vitual.herokuapp.com/proyectos/actualizarProyecto/' + id, actualizar, {
+         await Axios.put('proyectos/actualizarProyecto/' + id, actualizar, {
             headers: { 'autorizacion': token }
         })
         Swal.fire({

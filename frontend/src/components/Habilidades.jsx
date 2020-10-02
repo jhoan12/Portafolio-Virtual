@@ -20,7 +20,7 @@ export default function Habilidades() {
         const id = sessionStorage.getItem('idUsuario')
         const token = sessionStorage.getItem('token')
 
-        const respuesta = await Axios.get('https://backen-portafolio-vitual.herokuapp.com/iconos/obtenerIconosUsuario/' + id, {
+        const respuesta = await Axios.get('iconos/obtenerIconosUsuario/' + id, {
             headers: { 'autorizacion': token }
         })
         setDatos(respuesta.data);
@@ -28,7 +28,7 @@ export default function Habilidades() {
 
     const eliminarIcono = async (id) => {
         const token = sessionStorage.getItem('token')
-        const respuesta = await Axios.delete('https://backen-portafolio-vitual.herokuapp.com/iconos/eliminarIcono/' + id, {
+        const respuesta = await Axios.delete('iconos/eliminarIcono/' + id, {
             headers: { 'autorizacion': token }
         })
         Swal.fire({
@@ -55,7 +55,7 @@ export default function Habilidades() {
             pertenece,
             usuario: idUsuario
         }
-        await Axios.post('https://backen-portafolio-vitual.herokuapp.com/iconos/agregarIcono', nuevo, {
+        await Axios.post('iconos/agregarIcono', nuevo, {
             headers: { 'autorizacion': token }
         })
         setTimeout(() => {
@@ -68,7 +68,7 @@ export default function Habilidades() {
 
     return (
         <div className="container-xl">
-            <div className="col-12 text-center">
+            <div className="col-12 text-center" id="Habilidades">
                 <h1>Habilidades</h1>
                 <hr />
             </div>

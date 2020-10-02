@@ -31,26 +31,26 @@ export default function Publico(props) {
     const obtenerDatos = async () => {
         const nombreUsuario = props.match.params.nombre
 
-        const respuestaUsuario = await Axios.get('https://backen-portafolio-vitual.herokuapp.com/usuario/obtenerUsuario/' + nombreUsuario)
+        const respuestaUsuario = await Axios.get('usuario/obtenerUsuario/' + nombreUsuario)
         const idUsuario = respuestaUsuario.data._id
 
-        const respuestaIconos = await Axios.get('https://backen-portafolio-vitual.herokuapp.com/iconos/public/obtenerIconosUsuario/' + idUsuario)
+        const respuestaIconos = await Axios.get('iconos/public/obtenerIconosUsuario/' + idUsuario)
         setDatosIconos(respuestaIconos.data);
         // console.log('Iconos: ', respuestaIconos.data);
 
-        const respuestaProyectos = await Axios.get('https://backen-portafolio-vitual.herokuapp.com/proyectos/public/obtenerProyectos/' + idUsuario)
+        const respuestaProyectos = await Axios.get('proyectos/public/obtenerProyectos/' + idUsuario)
         setDatosProyectos(respuestaProyectos.data)
         // console.log('Proyectos: ', respuestaProyectos.data);
 
-        const respuestaArticulos = await Axios.get('https://backen-portafolio-vitual.herokuapp.com/acercade/public/obtenerArticulos/' + idUsuario)
+        const respuestaArticulos = await Axios.get('acercade/public/obtenerArticulos/' + idUsuario)
         setDatosArticulos(respuestaArticulos.data)
         // console.log('Articulos: ', respuestaArticulos.data);
 
-        const respuestaArchivos = await Axios.get('https://backen-portafolio-vitual.herokuapp.com/archivos/public/obtenerArchivos/' + idUsuario)
+        const respuestaArchivos = await Axios.get('archivos/public/obtenerArchivos/' + idUsuario)
         setDatosArchivos(respuestaArchivos.data)
         // console.log('archivos: ', respuestaArchivos.data);
 
-        const respuestaContactos = await Axios.get('https://backen-portafolio-vitual.herokuapp.com/contactos/public/obtenerContactos/' + idUsuario)
+        const respuestaContactos = await Axios.get('contactos/public/obtenerContactos/' + idUsuario)
         if (respuestaContactos.data.length > 0) {
             setWhatsapp(respuestaContactos.data[0].celular)
             setGmail(respuestaContactos.data[0].gmail)

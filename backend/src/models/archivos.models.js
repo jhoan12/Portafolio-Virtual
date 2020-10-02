@@ -9,7 +9,7 @@ const archivosSchema = new Schema({
 })
 
 archivosSchema.methods.setImgUrl = function setImgUrl(filename){
-    const url = 'https://backen-portafolio-vitual.herokuapp.com/'
+    const url = 'https://jhoan12-backend-portafolio.glitch.me/'
     this.imageUrl = url+'public/'+filename
 }
 

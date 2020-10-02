@@ -22,12 +22,12 @@ export default function Proyectos() {
         const id = sessionStorage.getItem('idUsuario')
         const token = sessionStorage.getItem('token')
 
-        const respuestaIconos = await Axios.get('https://backen-portafolio-vitual.herokuapp.com/iconos/obtenerIconosUsuario/' + id, {
+        const respuestaIconos = await Axios.get('iconos/obtenerIconosUsuario/' + id, {
             headers: { 'autorizacion': token }
         })
         setIconos(respuestaIconos.data)
 
-        const respuesta = await Axios.get('https://backen-portafolio-vitual.herokuapp.com/proyectos/obtenerProyectos/' + id, {
+        const respuesta = await Axios.get('proyectos/obtenerProyectos/' + id, {
             headers: { 'autorizacion': token }
         })
         setDatos(respuesta.data)
@@ -40,12 +40,12 @@ export default function Proyectos() {
         let I = 0
         while (I < filtradosIconios.length) {
             const id = filtradosIconios[I]._id
-            await Axios.delete('https://backen-portafolio-vitual.herokuapp.com/iconos/eliminarIcono/' + id, {
+            await Axios.delete('iconos/eliminarIcono/' + id, {
                 headers: { 'autorizacion': token }
             })
             I++
         }
-        const respuesta = await Axios.delete('https://backen-portafolio-vitual.herokuapp.com/proyectos/eliminarProyecto/' + idProyecto, {
+        const respuesta = await Axios.delete('proyectos/eliminarProyecto/' + idProyecto, {
             headers: { 'autorizacion': token }
         })
         Swal.fire({
@@ -74,7 +74,7 @@ export default function Proyectos() {
             usuario: idUsuario
         }
 
-        await Axios.post('https://backen-portafolio-vitual.herokuapp.com/iconos/agregarIcono', nuevo, {
+        await Axios.post('iconos/agregarIcono', nuevo, {
             headers: { 'autorizacion': token }
         })
         setTimeout(() => {
@@ -86,7 +86,7 @@ export default function Proyectos() {
     }
     const eliminarIcono = async (id) => {
         const token = sessionStorage.getItem('token')
-        await Axios.delete('https://backen-portafolio-vitual.herokuapp.com/iconos/eliminarIcono/' + id, {
+        await Axios.delete('iconos/eliminarIcono/' + id, {
             headers: { 'autorizacion': token }
         })
         setTimeout(() => {
@@ -96,7 +96,7 @@ export default function Proyectos() {
 
     return (
         <div className="container-xl mt-5">
-            <div className="col-12 text-center">
+            <div className="col-12 text-center" id="Proyectos">
                 <h1>Proyectos</h1>
                 <hr />
             </div>

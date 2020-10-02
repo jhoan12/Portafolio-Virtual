@@ -13,7 +13,7 @@ export default function CrearCuenta() {
     const registro = async (e) => {
         e.preventDefault()
         const usuario = { correo, contrasena, nombre }
-        const respuesta = await Axios.post('https://backen-portafolio-vitual.herokuapp.com/usuario/crearCuenta', usuario)
+        const respuesta = await Axios.post('usuario/crearCuenta', usuario)
         const mensaje = respuesta.data.mensaje
         if (mensaje !== 'Bienvenido') {
             Swal.fire({

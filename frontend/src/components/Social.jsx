@@ -20,7 +20,7 @@ export default function Social() {
         const id = sessionStorage.getItem('idUsuario')
         const token = sessionStorage.getItem('token')
 
-        const respuesta = await Axios.get('https://backen-portafolio-vitual.herokuapp.com/contactos/obtenerContactos/' + id, {
+        const respuesta = await Axios.get('contactos/obtenerContactos/' + id, {
             headers: { 'autorizacion': token }
         })
         
@@ -49,7 +49,7 @@ export default function Social() {
             usuario: id
         }
         
-         await Axios.post('https://backen-portafolio-vitual.herokuapp.com/contactos/agregarContactos',nuevoContacto, {
+         await Axios.post('contactos/agregarContactos',nuevoContacto, {
             headers: { 'autorizacion': token }
         })
         Swal.fire({
@@ -67,7 +67,7 @@ export default function Social() {
     const eliminarContacto = async () => {
         const id = idContacto
         const token = sessionStorage.getItem('token')
-        await Axios.delete('https://backen-portafolio-vitual.herokuapp.com/contactos/eliminarContactos/' + id, {
+        await Axios.delete('contactos/eliminarContactos/' + id, {
             headers: { 'autorizacion': token }
         })
         setWhatsapp('')
@@ -90,7 +90,7 @@ export default function Social() {
 
     return (
         <div className=" container-lg">
-            <div className="contactos mt-2 mb-3 row">
+            <div className="contactos mt-2 mb-3 row" id="Contactos">
                 
                 <h1 className="col-12 text-center">Contactos</h1> 
                 

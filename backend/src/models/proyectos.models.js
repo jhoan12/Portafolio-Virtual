@@ -12,7 +12,7 @@ const proyectosSchema = new Schema({
 })
 
 proyectosSchema.methods.setImgUrl = function setImgUrl(filename){
-    const url = 'https://backen-portafolio-vitual.herokuapp.com/'
+    const url = 'https://jhoan12-backend-portafolio.glitch.me/'
     this.imageUrl = url+'public/'+filename
 }
 
